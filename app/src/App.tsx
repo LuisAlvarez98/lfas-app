@@ -2,16 +2,15 @@ import React from "react";
 import logo from "./logo.svg";
 import styled from "styled-components";
 import Profile from "./img/avatar.png";
-import { FlexboxGrid } from "rsuite";
-import { Grid, Row, Col } from "rsuite";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import "./App.css";
+import Skills from "./components/Skills";
 
-const Container = styled.div`
+const MainContainer = styled.div`
   background-color: #64b5f6;
   height: 450px;
   width: 100%;
@@ -24,6 +23,11 @@ const AboutMe = styled.div`
   align-self: center;
 `;
 
+const Hackathons = styled.div`
+  align-self: center;
+  padding: 32px;
+  background-color: #64b5f6;
+`;
 const Experience = styled.div`
   align-self: center;
   padding: 32px;
@@ -40,7 +44,6 @@ const Title = styled.h1`
 `;
 const TitleBlue = styled.h1`
   color: white;
-  margin: 0px;
 `;
 
 const AvatarImage = styled.img`
@@ -48,23 +51,18 @@ const AvatarImage = styled.img`
   width: 248px;
   border-radius: 128px;
 `;
-const ContainerExperience = styled.div`
-  margin-top: 10px;
-  margin-bottom: 10px;
-  height: 248px;
-  width: 100%;
-  border-radius: 32px;
-  background-color: #1565c0;
+const SkillsContainer = styled.div`
+  align-self: center;
 `;
 
 const App = () => {
   return (
     <div className="App">
-      <Container>
+      <MainContainer>
         <SubContainer>
           <Title>Hey, I'm Luis 👋</Title>
         </SubContainer>
-      </Container>
+      </MainContainer>
       <AboutMe>
         <h1>About me</h1>
         <AvatarImage src={Profile} />
@@ -75,7 +73,7 @@ const App = () => {
         </p>
       </AboutMe>
       <Experience>
-        <TitleBlue>Experience</TitleBlue>
+        <TitleBlue>Profesional Experience</TitleBlue>
         <VerticalTimeline>
           <VerticalTimelineElement
             className="vertical-timeline-element--work"
@@ -238,6 +236,13 @@ const App = () => {
           />
         </VerticalTimeline>
       </Experience>
+      <SkillsContainer>
+        <h1>Skills</h1>
+        <Skills />
+      </SkillsContainer>
+      <Hackathons>
+        <TitleBlue>Hackathons</TitleBlue>
+      </Hackathons>
     </div>
   );
 };
