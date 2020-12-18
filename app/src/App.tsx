@@ -2,6 +2,10 @@ import React from "react";
 import logo from "./logo.svg";
 import styled from "styled-components";
 import Profile from "./img/avatar.png";
+import HackCemex from "./img/hack-cemex.jpeg";
+import HackMty from "./img/hack-mty.jpg";
+import { Footer } from "rsuite";
+import { Container, Row, Col } from "react-bootstrap";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
@@ -9,6 +13,12 @@ import {
 import "react-vertical-timeline-component/style.min.css";
 import "./App.css";
 import Skills from "./components/Skills";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faGithub,
+  faInstagram,
+  faLinkedin,
+} from "@fortawesome/free-brands-svg-icons";
 
 const MainContainer = styled.div`
   background-color: #64b5f6;
@@ -23,10 +33,26 @@ const AboutMe = styled.div`
   align-self: center;
 `;
 
+const Contact = styled.div`
+  align-self: center;
+`;
+
 const Hackathons = styled.div`
   align-self: center;
   padding: 32px;
   background-color: #64b5f6;
+`;
+const HackathonPlacing = styled.h6`
+  color: white;
+`;
+const HackathonImage = styled.img`
+  height: 248px;
+  width: 348px;
+  border-radius: 64px;
+`;
+const HackathonDescription = styled.p`
+  color: white;
+  margin-top: 10px;
 `;
 const Experience = styled.div`
   align-self: center;
@@ -45,6 +71,9 @@ const Title = styled.h1`
 const TitleBlue = styled.h1`
   color: white;
 `;
+const SubTitleBlue = styled.h4`
+  color: white;
+`;
 
 const AvatarImage = styled.img`
   height: 248px;
@@ -55,6 +84,52 @@ const SkillsContainer = styled.div`
   align-self: center;
 `;
 
+const SocialBallGit = styled.div`
+  border-radius: 128px;
+  width: 64px;
+  height: 64px;
+  background-color: #24292e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    background-color: #1e88e5;
+  }
+`;
+
+const SocialBallLinkedIn = styled.div`
+  border-radius: 128px;
+  width: 64px;
+  height: 64px;
+  background-color: #0e76a8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    background-color: #1e88e5;
+  }
+`;
+const SocialBall = styled.div`
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
+`;
+
+const SocialBallInsta = styled.div`
+  border-radius: 128px;
+  width: 64px;
+  height: 64px;
+  background-color: #e1306c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    background-color: #1e88e5;
+  }
+`;
 const App = () => {
   return (
     <div className="App">
@@ -242,7 +317,75 @@ const App = () => {
       </SkillsContainer>
       <Hackathons>
         <TitleBlue>Hackathons</TitleBlue>
+        <Container fluid>
+          <Row>
+            <Col xs={12} md={6}>
+              <SubTitleBlue>Hack MTY 2019</SubTitleBlue>
+              <HackathonPlacing>3rd place</HackathonPlacing>
+              <HackathonImage src={HackMty} />
+              <HackathonDescription>
+                We delivered a mobile app where users upload a photo of their
+                favorite clothes for receiving suggestions of similar items in
+                order to purchase them. Lead the development of the native
+                android app where I consumed all the services from our API
+                hosted by AWS.
+              </HackathonDescription>
+            </Col>
+            <Col xs={12} md={6}>
+              <SubTitleBlue>CEMEX Hackathon 2018</SubTitleBlue>
+              <HackathonPlacing>
+                1st place (University Category)
+              </HackathonPlacing>
+              <HackathonImage src={HackCemex} />
+              <HackathonDescription>
+                Freight Pool challenge, we developed a ReactJS app with Flask
+                that lets the user purchase space for their goods from CEMEX
+                freight trucks. I worked mainly on the main views design and
+                with the services consumption.
+              </HackathonDescription>
+            </Col>
+          </Row>
+        </Container>
       </Hackathons>
+      <Contact>
+        <Footer>
+          <h1>Let's get in touch</h1>
+          <Container fluid>
+            <Row>
+              <Col xs={12} md={4}>
+                <SocialBall>
+                  <SocialBallGit>
+                    {" "}
+                    <FontAwesomeIcon size="2x" color="white" icon={faGithub} />
+                  </SocialBallGit>
+                </SocialBall>
+              </Col>
+              <Col xs={12} md={4}>
+                <SocialBall>
+                  <SocialBallLinkedIn>
+                    <FontAwesomeIcon
+                      size="2x"
+                      color="white"
+                      icon={faLinkedin}
+                    />
+                  </SocialBallLinkedIn>
+                </SocialBall>
+              </Col>
+              <Col xs={12} md={4}>
+                <SocialBall>
+                  <SocialBallInsta>
+                    <FontAwesomeIcon
+                      size="2x"
+                      color="white"
+                      icon={faInstagram}
+                    />
+                  </SocialBallInsta>
+                </SocialBall>
+              </Col>
+            </Row>
+          </Container>
+        </Footer>
+      </Contact>
     </div>
   );
 };
