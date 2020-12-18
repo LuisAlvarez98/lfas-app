@@ -1,10 +1,10 @@
 import React from "react";
-import logo from "./logo.svg";
 import styled from "styled-components";
 import Profile from "./img/avatar.png";
 import HackCemex from "./img/hack-cemex.jpeg";
 import HackMty from "./img/hack-mty.jpg";
 import { Footer } from "rsuite";
+import Typing from "react-typing-animation";
 import { Container, Row, Col } from "react-bootstrap";
 import {
   VerticalTimeline,
@@ -19,6 +19,8 @@ import {
   faInstagram,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
+import { Navbar, Nav } from "react-bootstrap";
+let scrollToElement = require("scroll-to-element");
 
 const MainContainer = styled.div`
   background-color: #64b5f6;
@@ -29,6 +31,9 @@ const MainContainer = styled.div`
   align-content: center;
 `;
 
+const CompanyTitle = styled.span`
+  color: #0d47a1;
+`;
 const AboutMe = styled.div`
   align-self: center;
 `;
@@ -39,7 +44,7 @@ const Contact = styled.div`
 
 const Hackathons = styled.div`
   align-self: center;
-  padding: 32px;
+  padding: 16px;
   background-color: #64b5f6;
 `;
 const HackathonPlacing = styled.h6`
@@ -66,8 +71,8 @@ const SubContainer = styled.div`
 
 const Title = styled.h1`
   color: white;
-  margin: 0px;
 `;
+
 const TitleBlue = styled.h1`
   color: white;
 `;
@@ -76,15 +81,16 @@ const SubTitleBlue = styled.h4`
 `;
 
 const AvatarImage = styled.img`
-  height: 248px;
-  width: 248px;
+  height: 224px;
+  width: 224px;
   border-radius: 128px;
 `;
 const SkillsContainer = styled.div`
   align-self: center;
+  padding: 16px;
 `;
 
-const SocialBallGit = styled.div`
+const SocialBallGit = styled.a`
   border-radius: 128px;
   width: 64px;
   height: 64px;
@@ -96,8 +102,11 @@ const SocialBallGit = styled.div`
     background-color: #1e88e5;
   }
 `;
+const EmailTitle = styled.a`
+  font-size: 26px;
+`;
 
-const SocialBallLinkedIn = styled.div`
+const SocialBallLinkedIn = styled.a`
   border-radius: 128px;
   width: 64px;
   height: 64px;
@@ -118,7 +127,7 @@ const SocialBall = styled.div`
   margin-top: 10px;
 `;
 
-const SocialBallInsta = styled.div`
+const SocialBallInsta = styled.a`
   border-radius: 128px;
   width: 64px;
   height: 64px;
@@ -131,24 +140,113 @@ const SocialBallInsta = styled.div`
   }
 `;
 const App = () => {
+  const goToAbout = () => {
+    scrollToElement(".about-me", {
+      offset: 0,
+      ease: "out-bounce",
+      duration: 1500,
+    }).on("end", () => {});
+  };
+  const goToExperience = () => {
+    scrollToElement(".experience", {
+      offset: 0,
+      ease: "out-bounce",
+      duration: 1500,
+    }).on("end", () => {});
+  };
+  const goToSkills = () => {
+    scrollToElement(".skills", {
+      offset: 0,
+      ease: "out-bounce",
+      duration: 1500,
+    }).on("end", () => {});
+  };
+  const goToHackathons = () => {
+    scrollToElement(".hacks", {
+      offset: 0,
+      ease: "out-bounce",
+      duration: 1500,
+    }).on("end", () => {});
+  };
+  const goToContact = () => {
+    scrollToElement(".contact", {
+      offset: 0,
+      ease: "out-bounce",
+      duration: 1500,
+    }).on("end", () => {});
+  };
   return (
     <div className="App">
+      <Navbar
+        collapseOnSelect
+        expand="lg"
+        style={{ backgroundColor: "#64b5f6" }}
+      >
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse className="justify-content-end">
+          <Nav className="justify-content-end navbar-right">
+            <Nav.Link style={{ color: "white" }} onClick={goToAbout}>
+              About me
+            </Nav.Link>
+            <Nav.Link style={{ color: "white" }} onClick={goToExperience}>
+              Professional Experience
+            </Nav.Link>
+            <Nav.Link style={{ color: "white" }} onClick={goToSkills}>
+              Skills
+            </Nav.Link>
+            <Nav.Link style={{ color: "white" }} onClick={goToHackathons}>
+              Hackathons
+            </Nav.Link>
+            <Nav.Link style={{ color: "white" }} onClick={goToContact}>
+              Contact
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
       <MainContainer>
         <SubContainer>
-          <Title>Hey, I'm Luis 👋</Title>
+          <Typing loop={false} speed={125}>
+            <Title>Hello there, I'm Luis!</Title>
+          </Typing>
         </SubContainer>
       </MainContainer>
-      <AboutMe>
-        <h1>About me</h1>
-        <AvatarImage src={Profile} />
-        <p>I'm currently pursuing a Computer Science degree @ITESM</p>
-        <p>Fullstack Developer / React.js Enthusiast </p>
-        <p>
-          I enjoy playing videogames, learning new stuff and listening to music
-        </p>
+      <AboutMe style={{ padding: "16px" }} className="about-me">
+        <Container>
+          <Row>
+            <Col xs={12} md={4}>
+              <AvatarImage src={Profile} />
+            </Col>
+            <Col xs={12} md={8} style={{ alignSelf: "center" }}>
+              <h5
+                style={{
+                  fontWeight: "bold",
+                  textAlign: "left",
+                  color: "#64b5f6",
+                }}
+              >
+                About me
+              </h5>
+              <h5
+                style={{
+                  fontWeight: "bold",
+                  textAlign: "left",
+                }}
+              >
+                I'm currently pursuing a Computer Science degree @ITESM
+              </h5>
+              <h5 style={{ fontWeight: "bold", textAlign: "left" }}>
+                Fullstack Developer / React.js Enthusiast{" "}
+              </h5>
+              <h5 style={{ fontWeight: "bold", textAlign: "left" }}>
+                I enjoy playing videogames, learning new stuff and listening to
+                music
+              </h5>
+            </Col>
+          </Row>
+        </Container>
       </AboutMe>
       <Experience>
-        <TitleBlue>Profesional Experience</TitleBlue>
+        <TitleBlue className="experience">Profesional Experience</TitleBlue>
         <VerticalTimeline>
           <VerticalTimelineElement
             className="vertical-timeline-element--work"
@@ -157,9 +255,9 @@ const App = () => {
             date="Jun 2020 - Aug 2020"
             iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
           >
-            <h3 className="vertical-timeline-element-title">
-              <span>Lyft</span> Software Engineering Intern
-            </h3>
+            <h4 className="vertical-timeline-element-title">
+              Lyft <CompanyTitle>Software Engineering Intern</CompanyTitle>
+            </h4>
             <h4 className="vertical-timeline-element-subtitle">
               San Francisco, CA
             </h4>
@@ -189,9 +287,9 @@ const App = () => {
             date="Jun 2019 - Dec 2019"
             iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
           >
-            <h3 className="vertical-timeline-element-title">
-              <span>Next-e</span> Junior Software Developer
-            </h3>
+            <h4 className="vertical-timeline-element-title">
+              Next-e <CompanyTitle>Junior Software Developer</CompanyTitle>
+            </h4>
             <h4 className="vertical-timeline-element-subtitle">
               Monterrey, NL
             </h4>
@@ -217,9 +315,9 @@ const App = () => {
             contentArrowStyle={{ borderRight: "7px solid  rgb(33, 150, 243)" }}
             iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
           >
-            <h3 className="vertical-timeline-element-title">
-              <span>SOFEX</span> Software Engineer
-            </h3>
+            <h4 className="vertical-timeline-element-title">
+              SOFEX <CompanyTitle>Software Engineer</CompanyTitle>
+            </h4>
             <h4 className="vertical-timeline-element-subtitle">
               Monterrey, NL
             </h4>
@@ -250,9 +348,9 @@ const App = () => {
             contentArrowStyle={{ borderRight: "7px solid  rgb(33, 150, 243)" }}
             iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
           >
-            <h3 className="vertical-timeline-element-title">
-              <span>Grill on Box</span> Android Developer Intern
-            </h3>
+            <h4 className="vertical-timeline-element-title">
+              Grill on Box <CompanyTitle>Android Developer Intern</CompanyTitle>
+            </h4>
             <h4 className="vertical-timeline-element-subtitle">
               Monterrey, NL
             </h4>
@@ -280,9 +378,10 @@ const App = () => {
             contentArrowStyle={{ borderRight: "7px solid  rgb(33, 150, 243)" }}
             iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
           >
-            <h3 className="vertical-timeline-element-title">
-              <span>Grill on Box</span> Frontend Developer Intern
-            </h3>
+            <h4 className="vertical-timeline-element-title">
+              Grill on Box{" "}
+              <CompanyTitle>Frontend Developer Intern</CompanyTitle>
+            </h4>
             <h4 className="vertical-timeline-element-subtitle">
               Monterrey, NL
             </h4>
@@ -311,12 +410,12 @@ const App = () => {
           />
         </VerticalTimeline>
       </Experience>
-      <SkillsContainer>
-        <h1>Skills</h1>
+      <SkillsContainer className="skills">
+        <h1 style={{ color: "#64b5f6" }}>Skills</h1>
         <Skills />
       </SkillsContainer>
       <Hackathons>
-        <TitleBlue>Hackathons</TitleBlue>
+        <TitleBlue className="hacks">Hackathons</TitleBlue>
         <Container fluid>
           <Row>
             <Col xs={12} md={6}>
@@ -347,22 +446,30 @@ const App = () => {
           </Row>
         </Container>
       </Hackathons>
-      <Contact>
+      <Contact className="contact">
         <Footer>
-          <h1>Let's get in touch</h1>
-          <Container fluid>
+          <h1 style={{ marginTop: "10px" }}>Let's get in touch</h1>
+          <EmailTitle href="mailto:luisfalvarezsanchez@gmail.com">
+            luisfalvarezsanchez@gmail.com
+          </EmailTitle>
+          <Container fluid style={{ marginTop: "25px" }}>
             <Row>
               <Col xs={12} md={4}>
                 <SocialBall>
-                  <SocialBallGit>
-                    {" "}
+                  <SocialBallGit
+                    target="_new"
+                    href="https://github.com/LuisAlvarez98"
+                  >
                     <FontAwesomeIcon size="2x" color="white" icon={faGithub} />
                   </SocialBallGit>
                 </SocialBall>
               </Col>
               <Col xs={12} md={4}>
                 <SocialBall>
-                  <SocialBallLinkedIn>
+                  <SocialBallLinkedIn
+                    target="_new"
+                    href="https://www.linkedin.com/in/luisalvarez98/"
+                  >
                     <FontAwesomeIcon
                       size="2x"
                       color="white"
@@ -373,7 +480,10 @@ const App = () => {
               </Col>
               <Col xs={12} md={4}>
                 <SocialBall>
-                  <SocialBallInsta>
+                  <SocialBallInsta
+                    target="_new"
+                    href="https://www.instagram.com/luisalvarezsanchez/"
+                  >
                     <FontAwesomeIcon
                       size="2x"
                       color="white"
